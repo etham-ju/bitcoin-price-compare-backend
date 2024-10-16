@@ -2,9 +2,15 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import Big from 'big.js';
+import cors from 'cors';  // Import cors
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Use CORS middleware
+app.use(cors({ origin: [
+    'https://bitcoin-price-compare-frontend.vercel.app/'
+    ] })); // Allow requests from localhost:3000
 
 app.get('/api/prices', async (req, res) => {
     try {
@@ -23,11 +29,11 @@ app.get('/api/prices', async (req, res) => {
         ]);
 
         // Log the data to inspect their values
-        console.log('Upbit Data:', upbitData);
-        console.log('Bithumb Data:', bithumbData);
-        console.log('Binance Data:', binanceData);
-        console.log('Coinbase Data:', coinbaseData);
-        console.log('Exchange Rate Data:', exchangeRateData);
+        // console.log('Upbit Data:', upbitData);
+        // console.log('Bithumb Data:', bithumbData);
+        // console.log('Binance Data:', binanceData);
+        // console.log('Coinbase Data:', coinbaseData);
+        // console.log('Exchange Rate Data:', exchangeRateData);
 
         const usdToKrw = new Big(exchangeRateData.usd.krw);
 
