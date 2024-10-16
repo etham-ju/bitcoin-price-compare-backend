@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Use CORS middleware
 app.use(cors({ origin: [
-    'https://bitcoin-price-compare-frontend.vercel.app/'
+    'https://bitcoin-price-compare-frontend.vercel.app'
     ] })); // Allow requests from localhost:3000
 
 app.get('/api/prices', async (req, res) => {
