@@ -10,7 +10,7 @@ app.get('/api/prices', async (req, res) => {
     try {
         const upbitRes = await fetch('https://api.upbit.com/v1/ticker?markets=KRW-BTC');
         const bithumbRes = await fetch('https://api.bithumb.com/v1/ticker?markets=KRW-BTC');
-        const binanceRes = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
+        const binanceRes = await fetch('https://api4.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
         const coinbaseRes = await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
         const exchangeRateRes = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json');
 
@@ -21,6 +21,13 @@ app.get('/api/prices', async (req, res) => {
             coinbaseRes.json(),
             exchangeRateRes.json(),
         ]);
+
+        // Log the data to inspect their values
+        console.log('Upbit Data:', upbitData);
+        console.log('Bithumb Data:', bithumbData);
+        console.log('Binance Data:', binanceData);
+        console.log('Coinbase Data:', coinbaseData);
+        console.log('Exchange Rate Data:', exchangeRateData);
 
         const usdToKrw = new Big(exchangeRateData.usd.krw);
 
